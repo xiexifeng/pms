@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>开始使用layui</title>
+  <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<body>
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+          <li class="layui-this">标题一</li>
+          <li>标题二</li>
+          <li>标题三</li>
+        </ul>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show">内容1</div>
+          <div class="layui-tab-item">内容2</div>
+          <div class="layui-tab-item">内容3</div>
+        </div>
+    </div>
+    
+    <div class="layui-container">  
+        常规布局（以中型屏幕桌面为例）：
+        <div class="layui-row">
+          <div class="layui-col-md9">
+            你的内容 9/12
+          </div>
+          <div class="layui-col-md3">
+            你的内容 3/12
+          </div>
+        </div>
+         
+        移动设备、平板、桌面端的不同表现：
+        <div class="layui-row">
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            移动：6/12 | 平板：6/12 | 桌面：4/12
+          </div>
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            移动：6/12 | 平板：6/12 | 桌面：4/12
+          </div>
+          <div class="layui-col-xs4 layui-col-sm12 layui-col-md4">
+            移动：4/12 | 平板：12/12 | 桌面：4/12
+          </div>
+          <div class="layui-col-xs4 layui-col-sm7 layui-col-md8">
+            移动：4/12 | 平板：7/12 | 桌面：8/12
+          </div>
+          <div class="layui-col-xs4 layui-col-sm5 layui-col-md4">
+            移动：4/12 | 平板：5/12 | 桌面：4/12
+          </div>
+        </div>
+      </div>
+
+<!-- 你的HTML代码 -->
+ 
+<script src="layui/layui.js"></script>
+<script>
+
+//config的设置是全局的
+layui.config({
+  base: 'res/js/' //假设这是你存放拓展模块的根目录
+}).extend({ //设定模块别名
+  mymod: 'test/mymod' //如果 mymod.js 是在根目录，也可以不用设定别名
+}); 
+//使用拓展模块
+layui.use(['mymod'], function(){
+  var mymod = layui.mymod
+  
+  mymod.hello('World!'); //弹出 Hello World!
+});
+
+//一般直接写在一个js文件中
+layui.use(['layer', 'form', 'upload'], function(){
+  var layer = layui.layer
+  ,form = layui.form //获取form模块
+  ,upload = layui.upload; //获取upload模块
+  
+  layer.msg('Hello World');
+
+  //监听提交按钮
+  form.on('submit(test)', function(data){
+    console.log(data);
+  });
+  
+  //实例化一个上传控件
+  upload({
+    url: '上传接口url'
+    ,success: function(data){
+      console.log(data);
+    }
+  })
+});
+
+</script> 
+</body>
+</html>

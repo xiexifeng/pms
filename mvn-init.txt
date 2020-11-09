@@ -1,0 +1,1 @@
+mvn -B archetype:generate -DgroupId=com.xiexifeng.pms -DartifactId=pms-server -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
