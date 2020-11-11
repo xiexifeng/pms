@@ -1,5 +1,6 @@
-layui.use('form', function(){
+layui.use(['form'], function(){
     var form = layui.form;
+    var $ = layui.$ //重点处
     form.verify({
         username: function(value, item){ //value：表单的值、item：表单的DOM对象
           if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
@@ -20,15 +21,15 @@ layui.use('form', function(){
           ,'密码必须6到12位，且不能出现空格'
         ]
         ,repass: function(value, item){
-            alert(value)
-            alert($("password").val())
-            // if($("#password").val()!==value){
-            //     return '再次确认密码不对';
-            // }
+
+             if($("#password").val()!==value){
+                 return '再次确认密码不对';
+             }
         }  
       });  
     //监听提交
     form.on('submit(formDemo)', function(data){
+     
       layer.msg(JSON.stringify(data.field));
       return false;
     });
